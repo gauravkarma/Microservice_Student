@@ -38,9 +38,9 @@ public class StudentController {
         return studentService.getStudents();
     }
 
-    @GetMapping("/{studentId}")
-    public ResponseEntity<StudentReadDTO> getStudent(@PathVariable long studentId){
-            StudentReadDTO dto = studentService.getStudentById(studentId);
+    @GetMapping("/{id}")
+    public ResponseEntity<StudentReadDTO> getStudent(@PathVariable long id){
+            StudentReadDTO dto = studentService.getStudentById(id);
             if(dto!=null){
                 return new ResponseEntity<>(dto,HttpStatus.OK);    
             }else{
