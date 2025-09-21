@@ -14,11 +14,16 @@ import com.gk.MapperApplication.DTO.StudentCreateDTO;
 import com.gk.MapperApplication.DTO.StudentMappper;
 import com.gk.MapperApplication.DTO.StudentReadDTO;
 import com.gk.MapperApplication.Entities.Student;
+import com.gk.MapperApplication.Entities.Test;
 import com.gk.MapperApplication.Repositories.StudentRepo;
+import com.gk.MapperApplication.Repositories.TestRepository;
 import com.gk.MapperApplication.external.CourseDTO;
 
 @Service
 public class StudentService {
+
+    @Autowired
+    private TestRepository testRepository;
 
     @Autowired
     private StudentRepo studentRepo;
@@ -76,5 +81,8 @@ public class StudentService {
                 return coursesByStudentId.getBody();
       }
 
+      public Test saveTest(Test  test){
+        return testRepository.save(test);
+      }
 
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gk.MapperApplication.DTO.StudentCreateDTO;
 import com.gk.MapperApplication.DTO.StudentReadDTO;
 import com.gk.MapperApplication.Entities.Student;
+import com.gk.MapperApplication.Entities.Test;
 import com.gk.MapperApplication.Services.StudentService;
 import com.gk.MapperApplication.external.CourseDTO;
 
@@ -58,6 +59,11 @@ public class StudentController {
     @GetMapping("/courses/students/{id}")
     public List<CourseDTO> getCoursesByStudentId(@PathVariable long id){
         return studentService.getCoursesByStudentId(id);
+    }
+
+    @PostMapping(path = "/test")
+    public Test saveTest(@RequestBody Test test){
+        return studentService.saveTest(test);
     }
 
 }
