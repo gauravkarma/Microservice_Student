@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gk.MapperApplication2.DTO.CourseDTO;
 import com.gk.MapperApplication2.Entities.Course;
 import com.gk.MapperApplication2.Services.CourseService;
+import com.gk.MapperApplication2.api.version.CourseDTOV1;
+import com.gk.MapperApplication2.api.version.CourseDTOV2;
 
 @RestController
 @RequestMapping("/courses")
@@ -47,4 +49,18 @@ public class CourseController {
     public List<Course> getCourseByStudentId(@PathVariable long studentId){
         return courseService.getCourseByStudentId(studentId);
     }
+
+    //for api version v1 and v2
+    @GetMapping("/v1/students/{studentId}")
+    public List<CourseDTOV1> getCourseByStudentIdV1(@PathVariable long studentId){
+        List<Course> courses = courseService.getCourseByStudentId(studentId);
+        return courses.stream().map(course->new CourseDTOV1(course.getCourseName(),course.getCoursePrice(),course.getStudentId())).toList();
+    }
+
+    @GetMapping("/v2/students/{studentId}")
+    public List<CourseDTOV2> getCourseByStudentIdV2(@PathVariable long studentId){
+        List<Course> courses = courseService.getCourseByStudentId(studentId);
+        return courses.stream().map(course->new CourseDTOV2(course.getCourseAuthor(),course.getStudentId())).toList();
+    }
+
 }
