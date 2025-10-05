@@ -9,7 +9,6 @@ import com.gk.MapperApplication2.DTO.CourseDTO;
 import com.gk.MapperApplication2.DTO.CourseMapper;
 import com.gk.MapperApplication2.Entities.Course;
 import com.gk.MapperApplication2.Repositories.CourseRepository;
-import com.gk.MapperApplication2.api.version.CourseDTOV1;
 
 @Service
 public class CourseService {
@@ -20,7 +19,6 @@ public class CourseService {
 
     public CourseDTO saveCourseDTO(Course course){
         Course saved = courseRepository.save(course);
-
         return courseMapper.toCourseDTO(saved);
 
     }
@@ -38,9 +36,5 @@ public class CourseService {
     public List<Course> getCourseByStudentId(long id){
         return courseRepository.findCourseByStudentId(id);
     }
-
-    // public List<CourseDTOV1> getCourseByStudentIdV1(long id){
-    //     return courseRepository.findCourseByStudentIdV1(id);
-    // }
 
 }
